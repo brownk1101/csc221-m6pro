@@ -62,19 +62,9 @@ import pandas as pd
 
 def main():
 
-    USE_CACHED = True
-    if USE_CACHED:
-        print("Loading preprocessed data")
-        df = pd.read_csv('final_tweets.csv')
-    else:
-        print('processing raw data')
-
-        dfs = model.read_excel_file("Tweets(1).xlsx")
-        df = model.prepare_final_df(dfs)
-        df.to_csv('final_tweets.csv', index=False)
-
-
-
+    dfs = model.read_excel_file("Tweets(1).xlsx")
+    df = model.prepare_final_df(dfs)
+    df.to_csv('final_tweets.csv')
     view.display_menu()
     menu_option = 0
     while menu_option != 6:
@@ -88,7 +78,7 @@ def main():
         elif menu_option == 4:
             controller.option_4(df)
         elif menu_option == 5:
-            controller.option_4(df)
+            controller.option_5(df)
         else:
             if view.display_exit_message() is not None:
                 menu_option = 0
